@@ -1,5 +1,5 @@
-{,
-    "red": [,
+{
+    "red": [
         "Coconut Skull Scorchipepper Juice",
         "Fyora Spritzer",
         "Corn Pyramid",
@@ -408,8 +408,8 @@
         "Cherry Gummy Mace",
         "Grape Gummy Mallet",
         "Lemon Gummy Sword",
-    ],
-    "yellow": [,
+    ]
+    "yellow": [
         "Ancient Sakhmetian Bread of Coltzan III",
         "Berry Fizzers",
         "Blueberry Flavoured Ice Cube",
@@ -1232,8 +1232,8 @@
         "Vanilla Ice Cream Gummy",
         "Yellow Gummy Quiggles",
         "Rainbow Nata De Coco",
-    ],
-    "green": [,
+    ]
+    "green": [
         "Pyramid Banana",
         "Pyramid Purpple",
         "Pyramid Strawberry",
@@ -1390,8 +1390,8 @@
         "Luxury Chocolate Easter Negg",
         "Spotted Easter Negg",
         "Pretty Pink Easter Negg",
-    ],
-    "purple": [,
+    ]
+    "purple": [
         "One Dubloon Coin",
         "Two Dubloon Coin",
         "Five Dubloon Coin",
