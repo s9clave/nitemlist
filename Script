@@ -1,0 +1,58 @@
+// ==UserScript==
+// @name         Neopets Shop Highlighter (s9clave list)
+// @namespace    http://tampermonkey.net/
+// @version      1.2
+// @description  Highlights Neopets shop items using your JSON list (red/yellow/green)
+// @match        https://www.neopets.com/objects.phtml*
+// @grant        GM_xmlhttpRequest
+// @connect      raw.githubusercontent.com
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    const JSON_URL = 'https://raw.githubusercontent.com/s9clave/nitemlist/main/itemlist.json';
+
+    const COLOR_MAP = {
+        'high': '#f44336',   // red
+        'medium': '#ffeb3b', // yellow
+        'low': '#8bc34a'     // green
+    };
+
+    function fetchJSON(cb) {
+        GM_xmlhttpRequest({
+            method: 'GET',
+            url: JSON_URL,
+            onload(res) {
+                try {
+                    const json = JSON.parse(res.responseText);
+                    const map = {};
+                    Object.entries(json).forEach(([k, v]) => {
+                        map[k.trim().toLowerCase()] = v.trim().toLowerCase();
+                    });
+                    cb(map);
+                } catch (e) {
+                    console.error('Invalid JSON from URL:', e);
+                }
+            },
+            onerror() {
+                console.error('Could not fetch JSON from', JSON_URL);
+            }
+        });
+    }
+
+    function applyHighlights(data) {
+        document.querySelectorAll('table.content tr').forEach(row => {
+            const cell = row.querySelector('td b, td font');
+            if (!cell) return;
+
+            const itemName = cell.innerText.trim().toLowerCase();
+            const rating = data[itemName];
+            if (rating && COLOR_MAP[rating]) {
+                row.style.backgroundColor = COLOR_MAP[rating];
+            }
+        });
+    }
+
+    fetchJSON(applyHighlights);
+})();
